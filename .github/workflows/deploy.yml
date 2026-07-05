@@ -20,13 +20,32 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
-      - run: npm install
+      - run: npm ci
 
       - run: npm run build
         env:
           VITE_NASA_API_KEY: ${{ secrets.VITE_NASA_API_KEY }}
+
+      - name: Show dist contents
+        run: |
+          echo "Working directory: $(pwd)"
+          echo "Top-level files:"
+          ls -la
+          if [ ! -d dist ]; then
+            echo "::error::dist directory not found — build probably failed or wrote to a different folder"
+            ls -la
+            exit 1
+          fi
+          echo "Contents of dist:"
+          ls -laR dist
+          if [ -f dist/index.html ]; then
+            echo "::notice::index.html FOUND in dist"
+          else
+            echo "::error::index.html NOT FOUND in dist — Pages will reject the artifact. Check vite config (build.outDir) or build steps."
+            exit 1
+          fi
 
       - uses: actions/configure-pages@v4
 
