@@ -16,6 +16,23 @@
     background: var(--bg);
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 h1,
 h2 {
     font-family: var(--heading);
@@ -23,7 +40,14 @@ h2 {
     color: var(--text-h);
 }
 
+.card-main {
+    text-align: center;
+}
+
 .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     text-align: center;
 }
 
@@ -86,4 +110,100 @@ select option:checked {
     max-width: 600px;
     height: auto;
     margin-bottom: 20px;
+}
+
+.card-bottom {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+.modal-backdrop.active {
+    display: block;
+}
+
+.settings-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    z-index: 1000;
+    min-width: 320px;
+    color: var(--text);
+}
+.settings-modal.active {
+    display: block;
+}
+
+.settings-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--text-h);
+    font-size: 18px;
+}
+
+.settings-modal .settings-container {
+    margin-top: 10px;
+}
+
+.linksContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.addLinksButton {
+    width:30px;
+    height:30px;
+}
+
+.link-wrapper {
+    position: relative;
+    display: inline-block;
+    margin: 6px;
+}
+
+.delete-link {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+
+    width: 18px;
+    height: 18px;
+
+    padding: 0;
+
+    background: #d33;
+    color: white;
+
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delete-link:hover {
+    background: #b00;
+}
+
+.announcement {
+    width: 100%;
 }
